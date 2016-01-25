@@ -1,6 +1,4 @@
-package org.time2java.LuciusFox.dao;
-
-import org.apache.log4j.Logger;
+package org.time2die.LuciusFox.dao;
 
 /**
  * @author Aleksandr Karpov AV.Karpov@bssys.com

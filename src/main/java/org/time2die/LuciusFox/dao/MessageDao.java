@@ -1,4 +1,4 @@
-package org.time2java.LuciusFox.dao;
+package org.time2die.LuciusFox.dao;
 
 
 import org.springframework.data.repository.CrudRepository;
