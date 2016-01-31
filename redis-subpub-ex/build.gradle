@@ -13,8 +13,6 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-
 }
 
 dependencies {
