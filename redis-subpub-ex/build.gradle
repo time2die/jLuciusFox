@@ -1,0 +1,28 @@
+group 'org.time2die'
+version '0.1'
+
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName='JedisTest'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+
+}
+
+dependencies {
+    compile 'redis.clients:jedis:2.8.0'
+    compile 'org.codehaus.groovy:groovy:2.3.7'
+}
+
+
+
+
+
