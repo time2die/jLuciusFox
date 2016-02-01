@@ -5,8 +5,6 @@ import java.util.concurrent.CountDownLatch
 
 public class JedisTest {
 
-    private static final String JEDIS_SERVER = "a.server.somewhere";
-
     private ArrayList<String> messageContainer = new ArrayList<String>();
 
     private CountDownLatch messageReceivedLatch = new CountDownLatch(1);
@@ -35,7 +33,7 @@ public class JedisTest {
             public void run() {
                 try {
                     log("Connecting");
-                    Jedis jedis = new Jedis(JEDIS_SERVER);
+                    Jedis jedis = new Jedis();
                     log("Waiting to publish");
                     publishLatch.await();
                     log("Ready to publish, waiting one sec");
@@ -89,7 +87,7 @@ public class JedisTest {
             public void run() {
                 try {
                     log("Connecting");
-                    Jedis jedis = new Jedis(JEDIS_SERVER);
+                    Jedis jedis = new Jedis();
                     log("subscribing");
                     jedis.subscribe(jedisPubSub, "test");
                     log("subscribe returned, closing down");

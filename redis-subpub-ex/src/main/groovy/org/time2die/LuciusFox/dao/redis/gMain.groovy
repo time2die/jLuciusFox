@@ -12,6 +12,7 @@ class gMain{
                 try {
                     pubscriberJedis.publish("cc","123")
                     pubscriberJedis.publish("cc","345")
+                    pubscriberJedis.quit();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -24,6 +25,7 @@ class gMain{
                 Jedis subscriberJedis = new Jedis("localhost");
                 try {
                     subscriberJedis.subscribe(redSub,"CC");
+                    subscriberJedis.quit() ;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -33,8 +35,6 @@ class gMain{
         s.start() ;
         Thread.sleep(1000) ;
         p.start() ;
-
-
     }
 
 
