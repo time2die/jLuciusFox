@@ -1,4 +1,4 @@
-rootProject.name = 'LuciusFox'
+include 'redis-subpub-ex'
 include 'dao'
 include 'tg-sender'
 include 'redis-example'

@@ -2,4 +2,7 @@ gradle*
 .idea*
 .gradle*
 .*swp
+*.class
+*.tar
+*.zip
 build/
