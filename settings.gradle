@@ -1,3 +1,4 @@
 rootProject.name = 'LuciusFox'
 include 'dao'
 include 'tg-sender'
+include 'redis-example'
