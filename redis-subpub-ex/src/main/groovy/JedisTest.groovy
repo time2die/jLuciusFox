@@ -107,8 +107,6 @@ public class JedisTest {
     static final long startMillis = System.currentTimeMillis();
 
     private static void log(String string, Object... args) {
-        long millisSinceStart = System.currentTimeMillis() - startMillis;
-        System.out.printf("%20s %6d %s\n", Thread.currentThread().getName(), millisSinceStart,
-                String.format(string, args));
+        
     }
 }
