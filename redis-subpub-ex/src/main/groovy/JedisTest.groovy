@@ -1,10 +1,11 @@
 import redis.clients.jedis.Jedis
+import redis.clients.jedis.JedisPool
 import redis.clients.jedis.JedisPubSub
 
 import java.util.concurrent.CountDownLatch
 
 public class JedisTest {
-
+    static JedisPool jPool ;
     private ArrayList<String> messageContainer = new ArrayList<String>();
 
     private CountDownLatch messageReceivedLatch = new CountDownLatch(1);
@@ -15,6 +16,8 @@ public class JedisTest {
     }
 
     private void run() throws InterruptedException {
+        jPool = new JedisPool() ;
+
         setupPublisher();
         JedisPubSub jedisPubSub = setupSubscriber();
 
@@ -33,7 +36,7 @@ public class JedisTest {
             public void run() {
                 try {
                     log("Connecting");
-                    Jedis jedis = new Jedis();
+                    Jedis jedis = jPool.getResource() ;
                     log("Waiting to publish");
                     publishLatch.await();
                     log("Ready to publish, waiting one sec");
@@ -87,7 +90,7 @@ public class JedisTest {
             public void run() {
                 try {
                     log("Connecting");
-                    Jedis jedis = new Jedis();
+                    Jedis jedis = jPool.getResource();
                     log("subscribing");
                     jedis.subscribe(jedisPubSub, "test");
                     log("subscribe returned, closing down");
