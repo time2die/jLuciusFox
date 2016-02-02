@@ -1,15 +1,17 @@
 import redis.clients.jedis.Jedis
+import redis.clients.jedis.JedisPool
 import redis.clients.jedis.JedisPubSub
 
 class gMain{
-
+    static JedisPool jedisPool ;
     public static void main(String [] args){
-
+        jedisPool = new JedisPool() ;
         Thread p = new Thread(new Runnable() {
             @Override
             public void run() {
-                Jedis pubscriberJedis = new Jedis("localhost");
+                Jedis pubscriberJedis = jedisPool.getResource() ;
                 try {
+                    Thread.sleep(1000) ;
                     pubscriberJedis.publish("cc","123")
                     pubscriberJedis.publish("cc","345")
                     pubscriberJedis.quit();
@@ -22,9 +24,9 @@ class gMain{
         Thread s = new Thread(new Runnable() {
             @Override
             public void run() {
-                Jedis subscriberJedis = new Jedis("localhost");
+                Jedis subscriberJedis = jedisPool.getResource() ;
                 try {
-                    subscriberJedis.subscribe(redSub,"CC");
+                    subscriberJedis.subscribe(redSub,"cc");
                     subscriberJedis.quit() ;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -32,11 +34,11 @@ class gMain{
             }
         })
 
-        s.start() ;
-        Thread.sleep(1000) ;
         p.start() ;
+        s.start() ;
+        Thread.sleep(2000)
+        redSub.unsubscribe() ;
     }
-
 
     static JedisPubSub redSub = new JedisPubSub() {
         public void onUnsubscribe(String channel, int subscribedChannels) {
@@ -59,7 +61,7 @@ class gMain{
 
         @Override
         public void onPMessage(String pattern, String channel, String message) {
-            println "onPmessage"
+            println "onPmessage:"+ message
         }
 
         @Override
@@ -67,5 +69,4 @@ class gMain{
             println "ch:"+ channel+ "message:"+ message
         }
     }
-
 }
