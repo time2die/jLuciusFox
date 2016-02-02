@@ -21,11 +21,9 @@ public class JedisTest {
         setupPublisher();
         JedisPubSub jedisPubSub = setupSubscriber();
 
-        // publish away!
-        publishLatch.countDown();
 
+        publishLatch.countDown();
         messageReceivedLatch.await();
-        log("Got message: %s", messageContainer.iterator().next());
 
         jedisPubSub.unsubscribe();
     }
@@ -35,20 +33,12 @@ public class JedisTest {
             @Override
             public void run() {
                 try {
-                    log("Connecting");
                     Jedis jedis = jPool.getResource() ;
-                    log("Waiting to publish");
                     publishLatch.await();
-                    log("Ready to publish, waiting one sec");
                     Thread.sleep(1000);
-                    log("publishing");
                     jedis.publish("test", "This is a message");
-                    log("published, closing publishing connection");
                     jedis.quit();
-                    log("publishing connection closed");
                 } catch (Exception e) {
-                    log(">>> OH NOES Pub, " + e.getMessage());
-                    // e.printStackTrace();
                 }
             }
         }, "publisherThread").start();
@@ -58,12 +48,12 @@ public class JedisTest {
         final JedisPubSub jedisPubSub = new JedisPubSub() {
             @Override
             public void onUnsubscribe(String channel, int subscribedChannels) {
-                log("onUnsubscribe");
+
             }
 
             @Override
             public void onSubscribe(String channel, int subscribedChannels) {
-                log("onSubscribe");
+
             }
 
             @Override
@@ -81,7 +71,6 @@ public class JedisTest {
             @Override
             public void onMessage(String channel, String message) {
                 messageContainer.add(message);
-                log("Message received");
                 messageReceivedLatch.countDown();
             }
         };
@@ -89,24 +78,14 @@ public class JedisTest {
             @Override
             public void run() {
                 try {
-                    log("Connecting");
                     Jedis jedis = jPool.getResource();
-                    log("subscribing");
                     jedis.subscribe(jedisPubSub, "test");
-                    log("subscribe returned, closing down");
                     jedis.quit();
                 } catch (Exception e) {
-                    log(">>> OH NOES Sub - " + e.getMessage());
-                    // e.printStackTrace();
                 }
             }
         }, "subscriberThread").start();
         return jedisPubSub;
     }
 
-    static final long startMillis = System.currentTimeMillis();
-
-    private static void log(String string, Object... args) {
-        
-    }
 }
