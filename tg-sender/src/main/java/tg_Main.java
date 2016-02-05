@@ -10,7 +10,5 @@ public class tg_Main {
         sti.sendText(null,"test");
         sti.sendText(null,"test1");
         sti.sendText(null,"test2");
-
-        System.out.println("123");
     }
 }

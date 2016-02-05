@@ -4,5 +4,6 @@ gradle*
 .*swp
 *.class
 *.tar
+*.jar
 *.zip
-build/
+*/build/
