@@ -1,5 +1,7 @@
 include 'redis-subpub-ex'
 include 'dao'
 include 'tg-sender'
+include 'tg-reader'
+include 'tg-common'
 include 'redis-example'
 include 'clojure-test'

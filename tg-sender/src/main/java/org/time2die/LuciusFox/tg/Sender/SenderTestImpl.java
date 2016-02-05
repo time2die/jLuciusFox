@@ -9,7 +9,7 @@ public class SenderTestImpl implements tgSender {
 
     @Override
     public void sendText(String id, String text) {
-        tgService.sendMessage("",text);
+
     }
 
 }
