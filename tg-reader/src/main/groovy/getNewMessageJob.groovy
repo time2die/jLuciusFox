@@ -21,16 +21,18 @@ class getNewMessageJob implements Job {
         }
 
         AtomicInteger fileId = tgConfiguration.getKey(tgConfiguration.fileID) ;
+        String filePath = tgConfiguration.getKey(tgConfiguration.TGUpdatesFilePath)
         ids.each {
             def result = tgService.getUpdates(it)
             int newFile = fileId.incrementAndGet() ;
-            File f = new File(newFile.toString());
+            File f = new File(filePath+newFile.toString());
             if(f.exists()){
-                println "delete and create:"+ f.absolutePath
+                print "delete and create:"+ f.absolutePath+" "
                 f.delete()
                 f.createNewFile()
             }
             f << result ;
+            println result.length()
         }
     }
 }

@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class tgConfiguration {
     public static String clientsForUpdate = "tg.update.ids";
     public static String fileID = "tg.update.currentId";
-    public static String apiKey1 = "";
+    public static String apiKey1 = ApiKey.apiKey;
+    public static String TGUpdatesFilePath = "tg.update.filePath" ;
 
     private static Map<String, Object> props = new HashMap<>();
 static {
@@ -22,6 +23,7 @@ static {
         ids.add(apiKey1);
         props.put(clientsForUpdate, ids);
         props.put(fileID, new AtomicInteger(0));
+        props.put(TGUpdatesFilePath,"/home/time2die/java/src/LuciusFox/updates/") ;
     }
 
     static public Object getKey(String key){
