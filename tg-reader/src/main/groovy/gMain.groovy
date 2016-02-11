@@ -6,7 +6,7 @@ import org.time2die.LuciusFox.tg.common.Job;
  */
 class gMain {
     public static void main(String[] args) {
-        Job nmj = new getNewMessageJob()
+        Job nmj = new getNewMessageAndToFileSaveJob()
 
         (1..10).each {
             println("i:"+ it)

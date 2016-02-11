@@ -1,19 +1,11 @@
 package org.time2die.LuciusFox.dao;
 
-import javax.persistence.Entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Aleksandr Karpov AV.Karpov@bssys.com
  */
 
-@Entity
+
 public class RawTextEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id ;
 
     private String text ;
