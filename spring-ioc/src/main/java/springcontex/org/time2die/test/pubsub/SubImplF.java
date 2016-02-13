@@ -10,10 +10,18 @@ import javax.annotation.PreDestroy;
 
 public class SubImplF implements Sub {
 
-    Pub pub;
+    public Pub pub ;
 
-    public SubImplF() {
+    public Pub getPub() {
+        return pub;
+    }
 
+    public void setPub(Pub pub) {
+        this.pub = pub;
+    }
+
+    public SubImplF(Pub pub) {
+        setPub(pub);
     }
 
     @PostConstruct

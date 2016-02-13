@@ -8,7 +8,19 @@ import javax.annotation.PreDestroy;
  */
 public class SubImplS implements Sub {
 
-    Pub pub;
+    public SubImplS(Pub pub) {
+        this.pub = pub ;
+    }
+
+    public Pub getPub() {
+        return pub;
+    }
+
+    public void setPub(Pub pub) {
+        this.pub = pub;
+    }
+
+    public Pub pub;
 
 
     @PostConstruct
