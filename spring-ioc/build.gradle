@@ -1,0 +1,25 @@
+apply plugin: 'base'
+
+apply plugin: 'java'
+
+
+group 'org.time2die'
+version '0.1'
+
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = 'gMain'
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy:2.3.7'
+    compile 'org.springframework:spring-core:4.2.4.RELEASE'
+    compile 'org.springframework:spring-context:4.2.4.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
