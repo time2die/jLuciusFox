@@ -36,5 +36,10 @@ public class tgConfigurationRedisImpl implements tgConfiguration {
         return null;
     }
 
+    @Override
+    public tgConfiguration getConfig() {
+        return null;
+    }
+
 
 }
