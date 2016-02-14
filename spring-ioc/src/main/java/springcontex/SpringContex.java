@@ -17,17 +17,17 @@ public class SpringContex {
 
     @Bean
     Sub first(){
-        return new SubImplF(pub()) ;
+        return new SubImplF() ;
     }
 
     @Bean
     Sub second(){
-        return new SubImplS(pub()) ;
+        return new SubImplS() ;
     }
 
     @Bean
     Worker worker(){
-        return new Worker(pub(),first(),second()) ;
+        return new Worker() ;
     }
 
 }

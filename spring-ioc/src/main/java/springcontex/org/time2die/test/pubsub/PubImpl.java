@@ -1,11 +1,14 @@
 package springcontex.org.time2die.test.pubsub;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by time2die on 13.02.16.
  */
+@Component
 public class PubImpl implements Pub {
     Set<Sub> l = new HashSet<>();
 

@@ -6,18 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created by time2die on 13.02.16.
  */
 
+
 public class Worker {
 
+    @Autowired
     Pub pub ;
 
+    @Autowired
     Sub first ;
 
+    @Autowired
     Sub second ;
 
-    public Worker(Pub pub, Sub first, Sub second) {
-        setPub(pub);
-        setFirst(first);
-        setSecond(second);
+    public Worker() {
     }
 
     public Pub getPub() {
