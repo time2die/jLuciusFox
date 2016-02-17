@@ -1,0 +1,9 @@
+apply plugin: 'idea'
+ 
+repositories {
+    mavenCentral()
+}
+ 
+dependencies {
+    compile 'org.clojure:clojure:1.2.0'
+}
