@@ -6,5 +6,7 @@ gradle*
 *.tar
 *.jar
 *.zip
+*.iml
 */build/
 *updates
+ApiKey.java

@@ -1,5 +1,5 @@
 import org.time2die.LuciusFox.tg.common.Job
-import org.time2die.LuciusFox.tg.common.tgConfiguration
+import org.time2die.LuciusFox.tg.common.tgConfigurationDump
 import org.time2die.LuciusFox.tg.common.tgService
 
 import java.util.concurrent.atomic.AtomicInteger
@@ -8,20 +8,20 @@ import java.util.concurrent.atomic.AtomicInteger
  *
  * @author Aleksandr Karpov AV.Karpov@bssys.com
  */
-class getNewMessageJob implements Job {
+class getNewMessageAndToFileSaveJob implements Job {
 
-    getNewMessageJob() {
+    getNewMessageAndToFileSaveJob() {
     }
 
     @Override
     void work() {
-        def ids = tgConfiguration.getKey(tgConfiguration.clientsForUpdate) as List<String>;
+        def ids = tgConfigurationDump.getKey(tgConfigurationDump.clientsForUpdate) as List<String>;
         if(ids.empty){
             return ;
         }
 
-        AtomicInteger fileId = tgConfiguration.getKey(tgConfiguration.fileID) ;
-        String filePath = tgConfiguration.getKey(tgConfiguration.TGUpdatesFilePath)
+        AtomicInteger fileId = tgConfigurationDump.getKey(tgConfigurationDump.fileID) ;
+        String filePath = conf
         ids.each {
             def result = tgService.getUpdates(it)
             int newFile = fileId.incrementAndGet() ;
