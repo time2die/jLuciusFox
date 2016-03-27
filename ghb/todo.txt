@@ -1,0 +1,15 @@
+---done
+add sheduler
+add write message to all users
+add read message
+add save statistic
+add write statistic to chat
+add write message to chat
+shedule timer
+
+
+---todo
+answer time
+
+---scope
+statistic
