@@ -8,4 +8,5 @@ gradle*
 *.zip
 *.iml
 */build/
+*updates
 ApiKey.java
