@@ -6,7 +6,6 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -17,7 +16,6 @@ import java.util.Date;
 @Entity
 public class TimerInterval {
 
-    public TimerInterval() {}
 
     public TimerInterval(Date startTime, Long interval) {
         this.startTime = startTime;
@@ -36,8 +34,6 @@ public class TimerInterval {
     long interval;
     String goal;
 
-    public void setGoal(String goal) {
-        this.goal = goal;
-    }
+
 }
 

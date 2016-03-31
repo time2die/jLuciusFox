@@ -39,13 +39,26 @@ public class TemplateTest {
 
     @Test
     public void templateTestAsk() throws TemplateException, IOException {
-        Assert.assertEquals("What are you doing now ?", templateService.processTemplate("ask.ftl", null));
+        Assert.assertEquals("Break started please state your next task", templateService.processTemplate("ask.ftl", null));
+    }
+
+    @Test
+    public void getHotTest() throws IOException, TemplateException {
+        Assert.assertEquals(templateService.getHotQuestion(), "Did you talk to the first hot girl of the day, " +
+                "yes/no?") ;
+        Assert.assertEquals(templateService.getHotQuestion(), templateService.processTemplate("hotquestion.ftl", null) );
     }
 
     @Test
     public void getAskMethodTest() throws IOException, TemplateException {
         Assert.assertEquals(templateService.getAskText(), templateService.processTemplate("ask.ftl", null) );
     }
+
+    @Test
+    public void getPomodoroStart() throws IOException, TemplateException {
+        Assert.assertEquals("Pomodoro Started", templateService.processTemplate("pomodorostart.ftl",null));
+    }
+
 
 }
 

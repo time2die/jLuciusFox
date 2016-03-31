@@ -21,10 +21,11 @@ public class GHBUser {
     String slackId;
 
     String username;
+/*
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<TimerInterval> timers;
 
-
+*/
 
 }

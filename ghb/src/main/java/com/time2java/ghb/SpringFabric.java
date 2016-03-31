@@ -1,12 +1,14 @@
 package com.time2java.ghb;
 
+import com.time2java.ghb.dao.answer.repo.AnswerRepo;
+import com.time2java.ghb.dao.answer.repo.HotAnswerRepo;
+import com.time2java.ghb.dao.answer.repo.TaskAnswerRepo;
+import com.time2java.ghb.dao.answer.repo.WorkingAnswerRepo;
 import com.time2java.ghb.dao.repo.GHBUserRepositary;
-import com.time2java.ghb.dao.repo.KeyRepositary;
-import com.time2java.ghb.dao.repo.TimeIntervalRepository;
-import com.time2java.ghb.slak.GHBSlackService;
-import com.time2java.ghb.task.AskGaolTask;
-import com.time2java.ghb.task.ITask;
-import com.time2java.ghb.task.SendStatisticTask;
+import com.time2java.ghb.dao.repo.KeyRepository;
+import com.time2java.ghb.dao.repo.SlackmessageRepository;
+import com.time2java.ghb.slak.MessageProcessor;
+import com.time2java.ghb.task.ScheduledTaskFabric;
 import com.time2java.ghb.template.TemplateService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,23 +20,23 @@ import org.springframework.context.annotation.Configuration;
 public class SpringFabric {
 
     @Bean
-    public GHBSlackService slackService(TimeIntervalRepository timeIntervalRepository, KeyRepositary keyRepositary,  GHBUserRepositary userRepositary) {
-        return new GHBSlackService(timeIntervalRepository, keyRepositary, userRepositary);
+    public AnswerRepo answerRepo(HotAnswerRepo hotAnswerRepo, TaskAnswerRepo taskAnswerRepo, WorkingAnswerRepo workingAnswerRepo) {
+        return new AnswerRepo(hotAnswerRepo, taskAnswerRepo, workingAnswerRepo);
     }
 
     @Bean
-    public TemplateService templateService(){
-        return new TemplateService() ;
+    public ScheduledTaskFabric scheduledTaskFabric(MessageProcessor messageProcessor, TemplateService templateService) {
+        return new ScheduledTaskFabric(messageProcessor, templateService);
     }
 
     @Bean
-    public ITask askGaolTask(GHBSlackService slackService, TemplateService templateService) {
-        return new AskGaolTask(slackService, templateService);
+    public MessageProcessor messageProcessor(KeyRepository keyRepository, SlackmessageRepository slackmessageRepository, GHBUserRepositary ghbUserRepositary, AnswerRepo answerRepo) {
+        return new MessageProcessor(keyRepository, slackmessageRepository, ghbUserRepositary, answerRepo);
     }
 
     @Bean
-    public ITask sendStatisticTask(GHBSlackService slackService) {
-        return new SendStatisticTask((slackService));
+    public TemplateService templateService() {
+        return new TemplateService();
     }
 
 }
